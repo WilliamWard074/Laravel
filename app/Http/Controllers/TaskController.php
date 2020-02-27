@@ -30,4 +30,18 @@ class TaskController extends Controller
 
         $this->tasks = $tasks;
     }
+
+    /**
+	 * Display a list of all of the user's task.
+	 *
+	 * @param  Request  $request
+	 * @return Response
+	 */
+	public function index(Request $request)
+	{
+	    $tasks = $request->user()->tasks()->get();
+
+	    return view('tasks.index', [
+	        'tasks' => $tasks,
+	    ]);
 }
